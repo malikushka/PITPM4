@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TRPOModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Администратор">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="1000" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="1000" />
+          <Property Name="Почта" Type="varchar" MaxLength="1000" />
+          <Property Name="Телефон" Type="varchar" MaxLength="11" />
+          <Property Name="Роль" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Администратор_Одежда_Покупатель">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Одежда_ID" Type="int" />
+          <Property Name="Покупатель_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Возврат">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="varchar" MaxLength="1000" />
+          <Property Name="Сумма" Type="varchar" MaxLength="1000" />
+          <Property Name="Причина" Type="varchar" MaxLength="1000" />
+          <Property Name="Статус" Type="varchar" MaxLength="10" />
+          <Property Name="Менеджер_ID" Type="int" />
+          <Property Name="Закупка_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Закупка">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="varchar" MaxLength="1000" />
+          <Property Name="Сумма" Type="varchar" MaxLength="1000" />
+          <Property Name="Цена" Type="varchar" MaxLength="1000" />
+          <Property Name="Статус" Type="varchar" MaxLength="10" />
+          <Property Name="Менеджер_ID" Type="int" />
+          <Property Name="Администратор_ID" Type="int" />
+          <Property Name="Продавец/Консультант_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Инвентаризация">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="varchar" MaxLength="1000" />
+          <Property Name="Примечания" Type="varchar" MaxLength="1000" />
+          <Property Name="Продавец/консультант_ID" Type="int" />
+          <Property Name="Склад_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Классификация">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Классификация" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Менеджер">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="1000" />
+          <Property Name="Пароль" Type="varchar" MaxLength="1000" />
+          <Property Name="Почта" Type="varchar" MaxLength="1000" />
+          <Property Name="Телефон" Type="varchar" MaxLength="11" />
+          <Property Name="Должность" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Одежда">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Название" Type="varchar" MaxLength="1000" />
+          <Property Name="Описание" Type="varchar" MaxLength="1000" />
+          <Property Name="Цена" Type="varchar" MaxLength="1000" />
+          <Property Name="Размер" Type="varchar" MaxLength="10" />
+          <Property Name="Закупка_ID" Type="int" />
+          <Property Name="Классификация_ID" Type="int" />
+          <Property Name="Администратор_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Оформление_товара">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Статус" Type="varchar" MaxLength="1000" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="1000" />
+          <Property Name="Одежда_ID" Type="int" />
+          <Property Name="Покупатель_ID" Type="int" />
+          <Property Name="Продавец/Консультант_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Покупатель">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="1000" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="1000" />
+          <Property Name="Почта" Type="varchar" MaxLength="1000" />
+          <Property Name="Телефон" Type="varchar" MaxLength="11" />
+          <Property Name="Пол" Type="varchar" MaxLength="100" />
+          <Property Name="Роль" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Продавец/Консультант">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="1000" />
+          <Property Name="Пароль" Type="varchar" MaxLength="1000" />
+          <Property Name="Почта" Type="varchar" MaxLength="100" />
+          <Property Name="Телефон" Type="varchar" MaxLength="100" />
+          <Property Name="Должность" Type="varchar" MaxLength="100" />
+          <Property Name="Специализация" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Склад">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="1000" />
+          <Property Name="Емкость" Type="varchar" MaxLength="1000" />
+          <Property Name="Количество_одежды" Type="varchar" MaxLength="1000" />
+          <Property Name="Менеджер_ID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="Хранилище TRPOModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Администратор" EntityType="Self.Администратор" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Администратор_Одежда_Покупатель" EntityType="Self.Администратор_Одежда_Покупатель" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Возврат" EntityType="Self.Возврат" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Закупка" EntityType="Self.Закупка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Инвентаризация" EntityType="Self.Инвентаризация" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Классификация" EntityType="Self.Классификация" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Менеджер" EntityType="Self.Менеджер" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Одежда" EntityType="Self.Одежда" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оформление_товара" EntityType="Self.Оформление_товара" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Покупатель" EntityType="Self.Покупатель" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Продавец/Консультант" EntityType="Self.Продавец/Консультант" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Склад" EntityType="Self.Склад" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TRPOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Администратор">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Почта" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Роль" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Администратор_Одежда_Покупатель">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Одежда_ID" Type="Int32" />
+          <Property Name="Покупатель_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Возврат">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Сумма" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Причина" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Статус" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Менеджер_ID" Type="Int32" />
+          <Property Name="Закупка_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Закупка">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Сумма" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Цена" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Статус" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Менеджер_ID" Type="Int32" />
+          <Property Name="Администратор_ID" Type="Int32" />
+          <Property Name="Продавец_Консультант_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Инвентаризация">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Примечания" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Продавец_консультант_ID" Type="Int32" />
+          <Property Name="Склад_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Классификация">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Классификация1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Менеджер">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Пароль" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Почта" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Должность" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Одежда">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Описание" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Цена" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Размер" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Закупка_ID" Type="Int32" />
+          <Property Name="Классификация_ID" Type="Int32" />
+          <Property Name="Администратор_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Оформление_товара">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Статус" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Одежда_ID" Type="Int32" />
+          <Property Name="Покупатель_ID" Type="Int32" />
+          <Property Name="Продавец_Консультант_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Покупатель">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Почта" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Пол" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Роль" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Продавец_Консультант">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Пароль" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Почта" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Должность" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Специализация" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Склад">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Емкость" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Количество_одежды" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Менеджер_ID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="TRPOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Администратор" EntityType="Self.Администратор" />
+          <EntitySet Name="Администратор_Одежда_Покупатель" EntityType="Self.Администратор_Одежда_Покупатель" />
+          <EntitySet Name="Возврат" EntityType="Self.Возврат" />
+          <EntitySet Name="Закупка" EntityType="Self.Закупка" />
+          <EntitySet Name="Инвентаризация" EntityType="Self.Инвентаризация" />
+          <EntitySet Name="Классификация" EntityType="Self.Классификация" />
+          <EntitySet Name="Менеджер" EntityType="Self.Менеджер" />
+          <EntitySet Name="Одежда" EntityType="Self.Одежда" />
+          <EntitySet Name="Оформление_товара" EntityType="Self.Оформление_товара" />
+          <EntitySet Name="Покупатель" EntityType="Self.Покупатель" />
+          <EntitySet Name="Продавец_Консультант" EntityType="Self.Продавец_Консультант" />
+          <EntitySet Name="Склад" EntityType="Self.Склад" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TRPOModelContainer" CdmEntityContainer="TRPOEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TRPOModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Администратор">
+            <EntityTypeMapping TypeName="TRPOModel.Администратор">
+              <MappingFragment StoreEntitySet="Администратор">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Администратор_Одежда_Покупатель">
+            <EntityTypeMapping TypeName="TRPOModel.Администратор_Одежда_Покупатель">
+              <MappingFragment StoreEntitySet="Администратор_Одежда_Покупатель">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Одежда_ID" ColumnName="Одежда_ID" />
+                <ScalarProperty Name="Покупатель_ID" ColumnName="Покупатель_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Возврат">
+            <EntityTypeMapping TypeName="TRPOModel.Возврат">
+              <MappingFragment StoreEntitySet="Возврат">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Причина" ColumnName="Причина" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Менеджер_ID" ColumnName="Менеджер_ID" />
+                <ScalarProperty Name="Закупка_ID" ColumnName="Закупка_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Закупка">
+            <EntityTypeMapping TypeName="TRPOModel.Закупка">
+              <MappingFragment StoreEntitySet="Закупка">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Менеджер_ID" ColumnName="Менеджер_ID" />
+                <ScalarProperty Name="Администратор_ID" ColumnName="Администратор_ID" />
+                <ScalarProperty Name="Продавец_Консультант_ID" ColumnName="Продавец/Консультант_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Инвентаризация">
+            <EntityTypeMapping TypeName="TRPOModel.Инвентаризация">
+              <MappingFragment StoreEntitySet="Инвентаризация">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Примечания" ColumnName="Примечания" />
+                <ScalarProperty Name="Продавец_консультант_ID" ColumnName="Продавец/консультант_ID" />
+                <ScalarProperty Name="Склад_ID" ColumnName="Склад_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Классификация">
+            <EntityTypeMapping TypeName="TRPOModel.Классификация">
+              <MappingFragment StoreEntitySet="Классификация">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Классификация1" ColumnName="Классификация" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Менеджер">
+            <EntityTypeMapping TypeName="TRPOModel.Менеджер">
+              <MappingFragment StoreEntitySet="Менеджер">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Одежда">
+            <EntityTypeMapping TypeName="TRPOModel.Одежда">
+              <MappingFragment StoreEntitySet="Одежда">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Размер" ColumnName="Размер" />
+                <ScalarProperty Name="Закупка_ID" ColumnName="Закупка_ID" />
+                <ScalarProperty Name="Классификация_ID" ColumnName="Классификация_ID" />
+                <ScalarProperty Name="Администратор_ID" ColumnName="Администратор_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оформление_товара">
+            <EntityTypeMapping TypeName="TRPOModel.Оформление_товара">
+              <MappingFragment StoreEntitySet="Оформление_товара">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Одежда_ID" ColumnName="Одежда_ID" />
+                <ScalarProperty Name="Покупатель_ID" ColumnName="Покупатель_ID" />
+                <ScalarProperty Name="Продавец_Консультант_ID" ColumnName="Продавец/Консультант_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Покупатель">
+            <EntityTypeMapping TypeName="TRPOModel.Покупатель">
+              <MappingFragment StoreEntitySet="Покупатель">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Продавец_Консультант">
+            <EntityTypeMapping TypeName="TRPOModel.Продавец_Консультант">
+              <MappingFragment StoreEntitySet="Продавец/Консультант">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Специализация" ColumnName="Специализация" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Склад">
+            <EntityTypeMapping TypeName="TRPOModel.Склад">
+              <MappingFragment StoreEntitySet="Склад">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Емкость" ColumnName="Емкость" />
+                <ScalarProperty Name="Количество_одежды" ColumnName="Количество_одежды" />
+                <ScalarProperty Name="Менеджер_ID" ColumnName="Менеджер_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
